@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axiosWithAuth from "../Utilities/axiosWithAuth";
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../Utilities/axiosWithAuth"
 
 const initialColor = {
   color: "",
@@ -43,7 +43,6 @@ const ColorList = ({ colors, updateColors }) => {
       })
       .catch(err => console.log(err))
     //console.log(colorList)
-
   };
 
   const deleteColor = color => {
@@ -106,6 +105,34 @@ const ColorList = ({ colors, updateColors }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
+      {/* <form onSubmit={addColor}>
+        <legend>add color</legend>
+        <label>
+          color name:
+            <input
+            onChange={e =>
+              setColorToAdd({ ...colorToAdd, color: e.target.value })
+            }
+            value={colorToAdd.color}
+          />
+        </label>
+        <label>
+          hex code:
+            <input
+            onChange={e =>
+              setColorToAdd({
+                ...colorToAdd,
+                code: { hex: e.target.value }
+              })
+            }
+            value={colorToAdd.code.hex}
+          />
+        </label>
+        <div className="button-row">
+          <button type="submit" onClick={(event) => addColor(event, colorToAdd)}>save</button>
+          <button onClick={() => setAdding(false)}>cancel</button>
+        </div>
+      </form> */}
     </div>
   );
 };
