@@ -1,10 +1,11 @@
 import React, {useState} from "react";
+import axiosWithAuth from "../Utilities/axiosWithAuth";
 
 const initialState = {
   username: "",
   password: ""
 }
-const Login = () => {
+const Login = (props) => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
   const [login, setLogin] = useState(initialState)
@@ -15,6 +16,13 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault()
     console.log(login)
+    axiosWithAuth()
+      .post("./login", login)
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', res.data.payload)
+        props.history.push('/bubbles');
+    })
     setLogin(initialState)
   }
 
